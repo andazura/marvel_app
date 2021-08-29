@@ -1,0 +1,103 @@
+header{
+	background-color: #000;
+}
+header nav{
+	width: 100%;
+    display: flex;
+    align-items: center;
+}
+header nav img{
+    width: 10%;
+    align-self: start;
+}
+
+.buscador{
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px;
+    display: inline-block;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+    width: 100%;
+}
+.heroe{
+    width: 45%;
+    display: inline-block;
+    background-color: #FAF8FA;
+    margin-bottom: 1.5rem;
+}
+.heroe button{
+    background-color:  #ff0000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    margin-top: 10px;
+}
+.heroe img{
+    border-radius: 50%;
+    width: 50%;
+    float: left;
+    position: relative;
+    left: -10px;
+    top: -10px;
+}
+.nombre_herore{
+    position: relative;
+    top: -10px;
+    font-size: 1.5rem;
+}
+.heroe .related ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.heroe .related ul li{
+    display: inline-block;
+}
+
+
+
+.modal-contenido{
+    background-color:#fff;
+    width:40%;
+    height: 60%;
+    margin: 10% auto;
+    position: relative;
+}
+.modal-contenido .modal-body{
+    padding: 5%;
+}
+.modal-contenido button{
+    border: none;
+}
+.modal-contenido .close{
+    border: 0;
+    float: right;
+}
+.modal{
+    background-color: rgba(0,0,0,.8);
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;  
+}
+.btnModales{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+.modal-contenido .btnaddFav{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 2%;
+}

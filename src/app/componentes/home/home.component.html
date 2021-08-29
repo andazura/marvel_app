@@ -1,0 +1,48 @@
+<header>
+    <nav>
+        <img src="../../../../assets/logomarvel.png" alt="Logo Marvel Fondo negro">
+
+        <input class="buscador" type="text" placeholder="Buscar Heroe" (keyup)="buscarHeroe(buscarTexto.value)" #buscarTexto>
+    </nav>
+</header>
+<section style="width: 75%;">
+    <div style="padding: 20px;">
+        <img src="../../../assets/characters.png">
+        <h4 style="display: inline-block;font-size: large;font-weight: bold;">Characters</h4>
+    </div>
+    <div class="main">
+        <div class="heroe" *ngFor="let personaje of heroes">
+            <div>
+                <img src="{{personaje.thumbnail.path}}.{{personaje.thumbnail.extension}}">
+                <p class="nombre_herore"><b>{{personaje.name}}</b></p>
+                <p>
+                    {{personaje.description}}
+                </p>
+                <button>VIEW MORE</button>
+            </div>
+            <div style="width: 90%;margin:0 auto;float: left;padding: 1%;" class="related">
+                <p style="font-weight: bold;padding: 10px;">Related Comics</p>
+                <ul style="padding: 8px;">
+                    <li *ngFor="let series of personaje.comics.items" (click)="modal(series.resourceURI)">{{series.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="miModal" class="modal" *ngIf="vermodal">
+    <div class="modal-contenido">
+        <div class="modal-body">
+            <button href="#" class="close" (click)="vermodal = false"><img src="../../../assets/btn-close.png"></button>
+            <!-- <img src="{{comic.imagen}}" style="float: left;"> -->
+            <img src="../../../assets/pruebas.PNG" style="float: left;margin-right: 20px;">
+            <h2 style="margin-top: 4px;">{{comic.title}}</h2>
+            <p >{{comic.description}}</p>
+        </div>
+        <div class="btnModales">
+            <button class="btnaddFav"><img src="../../../assets/btn-favourites-default.png">ADD TO FAVOURITES</button>
+            <button class="btnaddFav" style="background-color: #DCDCDC;"><img src="../../../assets/shopping-cart-primary.png">ADD TO FAVOURITES</button>
+        </div>
+    </div>  
+</div>
