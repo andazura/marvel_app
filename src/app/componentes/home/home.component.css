@@ -62,6 +62,12 @@ header nav img{
     display: inline-block;
 }
 
+aside{
+    background-color: #d9d9d9;
+    width: 20%;
+    float: left;
+}
+
 .comics_fav{
     width: 80%;
     margin: 0 auto;
@@ -84,7 +90,7 @@ header nav img{
 .modal-contenido{
     background-color:#fff;
     width:40%;
-    height: 60%;
+    height: 45%;
     margin: 10% auto;
     position: relative;
 }
@@ -119,3 +125,45 @@ header nav img{
     padding: 2%;
 }
 
+.my_favourites_ttl{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin:20px 0px  auto;
+}
+
+.my_favourites_ttl h4{
+    font-size: xx-large;
+}
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {display: inline-block;margin: 0px 5px;}
+
+ul.pagination li a {
+    color: rgb(161, 161, 161);
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+ul.pagination li a.active {
+    background-color: #ff0000;
+    color: white;
+    border: 1px solid #ff0000;
+}
+
+/*Media Querys*/
+
+@media screen and (max-width:800px) {
+    .heroe{
+        width: 90%;
+    }
+}

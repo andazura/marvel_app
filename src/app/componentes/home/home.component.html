@@ -2,10 +2,10 @@
     <nav>
         <img src="../../../../assets/logomarvel.png" alt="Logo Marvel Fondo negro">
 
-        <input class="buscador" type="text" placeholder="Buscar Heroe" (keyup)="buscarHeroe(buscarTexto.value)" #buscarTexto>
+        <input class="buscador" type="text" #buscador placeholder="Buscar Heroe" (keyup)="buscarHeroe(buscarTexto.value,limit,offset)" #buscarTexto>
     </nav>
 </header>
-<section style="width: 75%;float: left;">
+<section style="width: 80%;float: left;margin-bottom: 20px;">
     <div style="padding: 20px;">
         <img src="../../../assets/characters.png">
         <h4 style="display: inline-block;font-size: large;font-weight: bold;">Characters</h4>
@@ -15,7 +15,7 @@
             <div>
                 <img src="{{personaje.thumbnail.path}}.{{personaje.thumbnail.extension}}">
                 <p class="nombre_herore"><b>{{personaje.name}}</b></p>
-                <p>
+                <p style="color: rgb(161, 161, 161);">
                     {{personaje.description}}
                 </p>
                 <button>VIEW MORE</button>
@@ -23,18 +23,32 @@
             <div style="width: 90%;margin:0 auto;float: left;padding: 1%;" class="related">
                 <p style="font-weight: bold;padding: 10px;">Related Comics</p>
                 <ul style="padding: 8px;">
-                    <li *ngFor="let series of personaje.comics.items" (click)="modal(series.resourceURI)">{{series.name}}</li>
+                    <li style="color: rgb(161, 161, 161);" *ngFor="let series of personaje.comics.items" (click)="modal(series.resourceURI)">{{series.name}}</li>
                 </ul>
             </div>
         </div>
+        <ul class="pagination">
+            <li><a href="#">«</a></li>
+            <li><a [ngClass]="offset == 0 ? 'active' : ''" (click)="modo_busqueda == false ? getAllHeroes(10,0): buscarHeroe(buscador.value,10,0)">1</a></li>
+            <li><a [ngClass]="offset == 10 ? 'active' : ''" (click)="modo_busqueda == false ? getAllHeroes(10,10) : buscarHeroe(buscador.value,10,10)" >2</a></li>
+            <li><a [ngClass]="offset == 20 ? 'active' : ''" (click)="modo_busqueda == false ? getAllHeroes(10,20) : buscarHeroe(buscador.value,10,20)">3</a></li>
+            <li><a [ngClass]="offset == 30 ? 'active' : ''" (click)="modo_busqueda == false ? getAllHeroes(10,30) : buscarHeroe(buscador.value,10,30)">4</a></li>
+            <li><a [ngClass]="offset == 40 ? 'active' : ''" (click)="modo_busqueda == false ? getAllHeroes(10,40) : buscarHeroe(buscador.value,10,40)">5</a></li>
+            <li><a [ngClass]="offset == 50 ? 'active' : ''" (click)="modo_busqueda == false ? getAllHeroes(10,50) : buscarHeroe(buscador.value,10,50)">6</a></li>
+            <li><a [ngClass]="offset == 60 ? 'active' : ''" (click)="modo_busqueda == false ? getAllHeroes(10,60) : buscarHeroe(buscador.value,10,60)">7</a></li>
+            <li><a href="#">»</a></li>
+          </ul>
     </div>
 </section>
-<aside style="width: 25%;float: left;">
-
+<aside >
+    <div class="my_favourites_ttl">
+        <img src="../../../assets/favourites.png" style="float: left;" alt="">
+        <h4 ><b>My favourites</b></h4>
+    </div>
     <div *ngFor="let com of comics_fav" class="comics_fav">
-        <button  class="delete_comic" type="button" ><img src="../../../assets/btn-delete.png" alt=""></button>
+        <button  class="delete_comic" type="button" (click)="eliminar_comic(com.id)"><img src="../../../assets/btn-delete.png" alt=""></button>
         <img src="{{com.imagen}}" alt="">
-        <h5 >{{com.titulo}}</h5>
+        <h5 style="margin-top: 5px;">{{com.titulo}}</h5>
     </div>
 </aside>
 

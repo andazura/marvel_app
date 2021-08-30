@@ -12,8 +12,8 @@ export class MarvelserviceService {
   private key = "?ts=1&apikey=0d43622f71e1751f2de11282ed51b7f7";
   constructor(private http:HttpClient) {}
   
-  getAllHeroes(){
-    return this.http.get(this.urlheroes+this.key)
+  getAllHeroes(limit=10,offset = 0){
+    return this.http.get(this.urlheroes+this.key+`&limit=${limit}&offset=${offset}`)
     .pipe(
       map(res =>{
         return res;
@@ -21,8 +21,8 @@ export class MarvelserviceService {
     );
   }
   
-  buscarHeroes( termino: string){
-    return this.http.get(`${this.urlheroes}${this.key}&nameStartsWith=${termino}`)
+  buscarHeroes( termino: string,limit:number = 10,offset:number=0){
+    return this.http.get(`${this.urlheroes}${this.key}&nameStartsWith=${termino}&limit=${limit}&offset=${offset}`)
     .pipe(
       map(res =>{
         return res;
