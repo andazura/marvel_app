@@ -62,8 +62,25 @@ header nav img{
     display: inline-block;
 }
 
+.comics_fav{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
 
-
+.delete_comic{
+    width: 6px;
+    border: none;
+    position: relative;
+    align-self: flex-end;
+    top: 10px;
+    right: 10px;
+    border-radius: 50%;
+}
 .modal-contenido{
     background-color:#fff;
     width:40%;
@@ -101,3 +118,4 @@ header nav img{
     width: 50%;
     padding: 2%;
 }
+
