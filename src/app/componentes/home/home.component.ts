@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   vermodal=false;
   limit = 10;
   offset = 0;
+  top_comics:any[] = [];
+  txt_navbar = "Ver Top 5 Comics";
   modo_busqueda:boolean=false;
   comic = {
     id:"",
@@ -21,14 +23,19 @@ export class HomeComponent implements OnInit {
     description:"",
     imagen:""
   }
+  top_comics_visible = false;
   constructor(private service :MarvelserviceService) { 
     
     this.recuperaStorage();
-    this.getAllHeroes(this.limit,this.offset)  
+    this.getAllHeroes(this.limit,this.offset) 
+    this.setTopComics();
   }
   ngOnInit(): void {
   }
-
+  ver_top_comics(visible:boolean){
+    this.top_comics_visible = !visible;
+    this.txt_navbar = this.top_comics_visible ? "Inicio" : "Ver Top 5 Comics";
+  }
   getAllHeroes(limit:number,offset:number){
     this.offset = offset;
     this.service.getAllHeroes(limit,offset).subscribe(res =>{
@@ -67,7 +74,9 @@ export class HomeComponent implements OnInit {
     this.service.detalleComic(url).subscribe(res =>{
       const comic:any = Object.entries(res);
       this.comic = comic[6][1].results[0];
-      this.comic.imagen = comic[6][1].results[0].images[0].path+"/portrait_fantastic."+comic[6][1].results[0].images[0].extension;
+      console.log(this.comic)
+      this.comic.imagen = 
+      comic[6][1].results[0].images[0].path+"/portrait_fantastic."+comic[6][1].results[0].images[0].extension;
     }
 
     );
@@ -155,7 +164,21 @@ export class HomeComponent implements OnInit {
         }
       })
     })
+  }
 
+  setTopComics(){
+    var cantidad =0;
+    this.service.getComics().subscribe(res=>{
+      const comic:any = Object.entries(res);
+      let comics_tmp = comic[6][1].results;
+      comics_tmp.forEach((ele: any) =>{
+        if(cantidad <5){
+          let comic:any = ele;
+          comic.imagen = ele.thumbnail.path+"/portrait_fantastic."+ele.thumbnail.extension;
+          this.top_comics.push(ele);
+          cantidad++;
+        }
+      });
+    });
   }
 }
-

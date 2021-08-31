@@ -1,11 +1,20 @@
 <header>
     <nav>
         <img src="../../../../assets/logomarvel.png" alt="Logo Marvel Fondo negro">
-        <button type="button" style="color:#fff ;">Ver TOP Comics</button>
+        <button type="button" (click)="ver_top_comics(top_comics_visible)" style="color:#fff ;">{{txt_navbar}}</button>
         <input class="buscador" type="text" #buscador placeholder="Buscar Heroe" (keyup)="buscarHeroe(buscarTexto.value,limit,offset)" #buscarTexto>
     </nav>
 </header>
-<section style="width: 80%;float: left;margin-bottom: 20px;">
+<section style="width: 80%;float: left;margin-bottom: 20px;" *ngIf="top_comics_visible">
+    <div class="main">
+        <h3 style="width: 100%;text-align: center;margin-top: 20px;">Top 5 Comics Favoritos</h3>
+        <div *ngFor="let top of top_comics" class="top_comics" (click)="modal(top.resourceURI)">
+            <img src="{{top.imagen}}" style="margin:0 auto;display: block;" alt="Portada {{top.title}}">
+            <h5  style="width: 100%;text-align: center;margin-top: 10px;">{{top.title}}</h5>
+        </div>
+    </div>
+</section>
+<section style="width: 80%;float: left;margin-bottom: 20px;" *ngIf="!top_comics_visible">
     <div style="padding: 20px;">
         <img src="../../../assets/characters.png">
         <h4 style="display: inline-block;font-size: large;font-weight: bold;">Characters</h4>
