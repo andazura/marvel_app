@@ -10,6 +10,7 @@ export class MarvelserviceService {
 
   private urlheroes = "https://gateway.marvel.com:443/v1/public/characters";
   private key = "?ts=1&apikey=0d43622f71e1751f2de11282ed51b7f7";
+  private urlComics = "https://gateway.marvel.com:443/v1/public/comics";
   constructor(private http:HttpClient) {}
   
   getAllHeroes(limit=10,offset = 0){
@@ -39,7 +40,16 @@ export class MarvelserviceService {
     );
 
   }
-
+  
+  getComics(){
+    var random = Math.floor(Math.random()*101);
+    return this.http.get(this.urlComics+this.key+`&limit=10&offset=${random}`)
+    .pipe(
+      map(res =>{
+        return res;
+      })
+    );
+  }
   private crearArreglo(obj:Object){
     // const heroes:any;
     // Object.keys(obj).forEach(key  => {

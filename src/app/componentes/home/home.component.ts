@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit {
     this.recuperaStorage();
     this.getAllHeroes(this.limit,this.offset)  
   }
+  ngOnInit(): void {
+  }
 
   getAllHeroes(limit:number,offset:number){
     this.offset = offset;
@@ -49,7 +51,6 @@ export class HomeComponent implements OnInit {
         this.comics_fav.push(comic_)
       }
     })
-    console.log(this.comics_fav)
   }
   buscarHeroe(termino:string,limit:number,offset:number){
     if(termino.length > 3){
@@ -62,8 +63,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
   modal(url:String){
     this.service.detalleComic(url).subscribe(res =>{
       const comic:any = Object.entries(res);
@@ -78,7 +77,7 @@ export class HomeComponent implements OnInit {
   agregarComicFav(comic:any){
     
     let id:string = comic.id;
-    let storage:any = localStorage.getItem("comics_fav"+id);
+    let storage:any = this.validaComicRepetido(id);
     if(storage !== null){
       Swal.fire('Oops...', 'Este comic ya esta en tu lista de favoritos', 'warning')
         return (false);
@@ -99,7 +98,10 @@ export class HomeComponent implements OnInit {
     localStorage.setItem("comics_fav"+id,JSON.stringify(comic_tmp));
     return true
   }
-
+  validaComicRepetido(id:String){
+    let comic = localStorage.getItem("comics_fav"+id);
+    return comic;
+  }
   eliminar_comic(id_comic:String){
     Swal.fire({
       title: 'Seguro que desea eliminar el comic de su lista?',
@@ -125,8 +127,35 @@ export class HomeComponent implements OnInit {
         )
       }
     })
-    
-   
+  }
+
+  addRandomComics(){
+    var cantidad = 0;
+    this.service.getComics().subscribe(res=>{
+      const comic:any = Object.entries(res);
+      let comics_tmp = comic[6][1].results;
+      comics_tmp.forEach((ele: any) =>{
+        let repetido = this.validaComicRepetido(ele.id);
+        if(repetido == null && cantidad <3){
+          let comic_tmp = {
+            id:ele.id,
+            titulo:ele.title,
+            imagen: ele.thumbnail.path+"/portrait_fantastic."+ele.thumbnail.extension
+          }
+          cantidad++;
+          this.comics_fav.push(comic_tmp);
+          localStorage.setItem("comics_fav"+comic_tmp.id,JSON.stringify(comic_tmp));      
+        }
+        if(cantidad == 2){
+          Swal.fire(
+            'Comics Favoritos',
+            'Se han agregado 3 grandiosos comics a tu lista',
+            'success'
+          )
+        }
+      })
+    })
+
   }
 }
 

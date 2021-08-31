@@ -1,7 +1,7 @@
 <header>
     <nav>
         <img src="../../../../assets/logomarvel.png" alt="Logo Marvel Fondo negro">
-
+        <button type="button" style="color:#fff ;">Ver TOP Comics</button>
         <input class="buscador" type="text" #buscador placeholder="Buscar Heroe" (keyup)="buscarHeroe(buscarTexto.value,limit,offset)" #buscarTexto>
     </nav>
 </header>
@@ -43,7 +43,13 @@
 <aside >
     <div class="my_favourites_ttl">
         <img src="../../../assets/favourites.png" style="float: left;" alt="">
-        <h4 ><b>My favourites</b></h4>
+        <h4><b>My favourites</b></h4>
+    </div>
+    <div style="width: 100%;display: flex;" class="btnh">
+        <button type="button" style="width: 40%;margin: 0 auto;" class="btn" (click)="addRandomComics()">
+            <img src="../../../assets/random.svg.svg" style="width: 15px;">
+            Agregar Comics aleatoreos
+        </button>
     </div>
     <div *ngFor="let com of comics_fav" class="comics_fav">
         <button  class="delete_comic" type="button" (click)="eliminar_comic(com.id)"><img src="../../../assets/btn-delete.png" alt=""></button>
