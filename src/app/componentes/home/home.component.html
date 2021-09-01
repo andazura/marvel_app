@@ -1,11 +1,11 @@
 <header>
     <nav>
-        <img src="../../../../assets/logomarvel.png" alt="Logo Marvel Fondo negro">
+        <img class="logo" src="../../../../assets/logomarvel.png" alt="Logo Marvel Fondo negro">
         <button type="button" (click)="ver_top_comics(top_comics_visible)" style="color:#fff ;">{{txt_navbar}}</button>
         <input class="buscador" type="text" #buscador placeholder="Buscar Heroe" (keyup)="buscarHeroe(buscarTexto.value,limit,offset)" #buscarTexto>
     </nav>
 </header>
-<section style="width: 80%;float: left;margin-bottom: 20px;" *ngIf="top_comics_visible">
+<section class="conta" *ngIf="top_comics_visible">
     <div class="main">
         <h3 style="width: 100%;text-align: center;margin-top: 20px;">Top 5 Comics Favoritos</h3>
         <div *ngFor="let top of top_comics" class="top_comics" (click)="modal(top.resourceURI)">
@@ -14,7 +14,7 @@
         </div>
     </div>
 </section>
-<section style="width: 80%;float: left;margin-bottom: 20px;" *ngIf="!top_comics_visible">
+<section class="conta" *ngIf="!top_comics_visible">
     <div style="padding: 20px;">
         <img src="../../../assets/characters.png">
         <h4 style="display: inline-block;font-size: large;font-weight: bold;">Characters</h4>
@@ -52,10 +52,10 @@
 <aside >
     <div class="my_favourites_ttl">
         <img src="../../../assets/favourites.png" style="float: left;" alt="">
-        <h4><b>My favourites</b></h4>
+        <h4 style="font-size: 2vw;"><b>My favourites</b></h4>
     </div>
     <div style="width: 100%;display: flex;" class="btnh">
-        <button type="button" style="width: 40%;margin: 0 auto;" class="btn" (click)="addRandomComics()">
+        <button type="button" style="width: 70%;margin: 0 auto;" class="btn" (click)="addRandomComics()">
             <img src="../../../assets/random.svg.svg" style="width: 15px;">
             Agregar Comics aleatoreos
         </button>

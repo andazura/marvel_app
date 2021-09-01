@@ -32,7 +32,8 @@ export class MarvelserviceService {
   }
   
   detalleComic(url:String){
-    return this.http.get(`${url}${this.key}`)
+    let urlF = url.replace("http","https");
+    return this.http.get(`${urlF}${this.key}`)
     .pipe(
       map(res =>{
         return res;

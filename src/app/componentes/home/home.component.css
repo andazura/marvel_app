@@ -23,6 +23,11 @@ header nav button{
     padding: 10px;
     display: inline-block;
 }
+.conta{
+    width: 80%;
+    float: left;
+    margin-bottom: 20px;
+}
 .main{
     display: flex;
     flex-direction: row;
@@ -32,6 +37,7 @@ header nav button{
     width: 100%;
 }
 .heroe{
+    margin-top: 10px;
     width: 45%;
     display: inline-block;
     background-color: #FAF8FA;
@@ -216,5 +222,73 @@ ul.pagination li a.active {
 @media screen and (max-width:800px) {
     .heroe{
         width: 90%;
+    }
+    .modal-contenido{
+        width: 80%;
+        height: 80%;
+    }
+    .modal-contenido .btnaddFav{
+        width: 100%;
+    }
+}
+/* 
+@media screen and (max-width:900px) {
+    .conta, aside{
+        width: 100% !important;
+        float: none;
+    }
+} */
+
+@media screen and (max-width:500px) {
+    
+    
+    nav{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 4px;
+    }
+    nav input,button{
+        width: 95%;
+        display: block;
+    }
+    nav .logo{
+        width: 100% !important;
+        display: block;
+        align-self: center;
+    }
+    .conta{
+        width: 100%;
+    }
+    .heroe, .top_comics{
+        width: 90%;
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .heroe p{
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    .heroe button{
+        display: block;
+        margin: 0 auto;
+    }
+    .heroe img{
+        width: 100%;
+        float: none;        
+    }
+    .main{
+        width: 100%;
+    }
+    aside{
+        float: none;
+        width: 100%;
     }
 }
